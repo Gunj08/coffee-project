@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { 
+  Bell, 
+  Map, 
+  Activity, 
+  ClipboardList, 
+  User, 
+  LogOut,
+  Coffee
+} from 'lucide-react';
 import "../responsive.css";
 
 const WaiterDashboard = () => {
@@ -19,6 +28,9 @@ const WaiterDashboard = () => {
 
   const colors = {
     coffee: "#4b2c20",
+    sidebarBg: '#2b1d19', // Dark Roasted Coffee
+    sidebarText: '#fdfbf9', // Cream
+    sidebarActive: '#a27c5c', // Bronze Accent
     latte: "#cbbcb2",
     cream: "#fdfbf9",
     white: "#ffffff",
@@ -34,16 +46,16 @@ const WaiterDashboard = () => {
       fontFamily: "'Poppins', sans-serif",
     },
     sidebar: {
-      backgroundColor: colors.latte,
-      color: colors.coffee,
-      boxShadow: "4px 0 15px rgba(0,0,0,0.08)",
+      backgroundColor: colors.sidebarBg,
+      color: colors.sidebarText,
+      boxShadow: "4px 0 15px rgba(0,0,0,0.15)",
     },
     sidebarHeader: {
       padding: "40px 30px",
       fontSize: "22px",
       fontWeight: "bold",
-      borderBottom: "1px solid rgba(76,60,52,0.15)",
-      color: colors.coffee,
+      borderBottom: '1px solid rgba(255,255,255,0.1)',
+      color: colors.sidebarText,
     },
     navItem: (active) => ({
       display: "flex",
@@ -51,12 +63,12 @@ const WaiterDashboard = () => {
       gap: "15px",
       padding: "15px 25px",
       cursor: "pointer",
-      backgroundColor: active ? colors.highlight : "transparent",
+      backgroundColor: active ? 'rgba(255,255,255,0.1)' : 'transparent',
       transition: "0.3s",
       borderLeft: active
-        ? `5px solid ${colors.coffee}`
+        ? `5px solid ${colors.sidebarActive}`
         : "5px solid transparent",
-      color: colors.coffee,
+      color: active ? colors.sidebarActive : colors.sidebarText,
       fontWeight: active ? "700" : "500",
       fontSize: "15px",
     }),
@@ -407,12 +419,12 @@ const WaiterDashboard = () => {
           <div
             style={{
               padding: "8px",
-              backgroundColor: "rgba(75, 44, 32, 0.1)",
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
               borderRadius: "8px",
               marginRight: "12px",
             }}
           >
-            <span style={{ fontSize: "24px" }}>☕</span>
+            <Coffee size={24} color={colors.sidebarActive} />
           </div>
           Waiter Flow
         </div>
@@ -424,7 +436,7 @@ const WaiterDashboard = () => {
               setSidebarOpen(false);
             }}
           >
-            <span style={{ fontSize: "18px" }}>🛎️</span> Service Ready
+            <Bell size={20} /> Service Ready
           </div>
           <div
             style={styles.navItem(activeTab === "map")}
@@ -433,7 +445,7 @@ const WaiterDashboard = () => {
               setSidebarOpen(false);
             }}
           >
-            <span style={{ fontSize: "18px" }}>🏢</span> Floor Plan
+            <Map size={20} /> Floor Plan
           </div>
           <div
             style={styles.navItem(activeTab === "active")}
@@ -442,7 +454,7 @@ const WaiterDashboard = () => {
               setSidebarOpen(false);
             }}
           >
-            <span style={{ fontSize: "18px" }}>🏃</span> Active Tasks
+            <Activity size={20} /> Active Tasks
           </div>
           <div
             style={styles.navItem(activeTab === "history")}
@@ -451,7 +463,7 @@ const WaiterDashboard = () => {
               setSidebarOpen(false);
             }}
           >
-            <span style={{ fontSize: "18px" }}>📜</span> Shift Log
+            <ClipboardList size={20} /> Shift Log
           </div>
           <div
             style={styles.navItem(activeTab === "profile")}
@@ -460,7 +472,7 @@ const WaiterDashboard = () => {
               setSidebarOpen(false);
             }}
           >
-            <span style={{ fontSize: "18px" }}>👤</span> My Profile
+            <User size={20} /> My Profile
           </div>
         </nav>
         <div
@@ -470,7 +482,7 @@ const WaiterDashboard = () => {
             navigate("/login");
           }}
         >
-          <span>🚪</span> Logout
+          <LogOut size={20} /> Logout
         </div>
       </aside>
 

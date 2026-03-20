@@ -55,7 +55,7 @@ const AdminDashboard = () => {
   };
 
   const styles = {
-    container: { backgroundColor: '#FFF8F0', minHeight: '100vh', display: 'flex', flexDirection: 'column' },
+    container: { backgroundColor: '#FFF8F0', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'Poppins', sans-serif" },
     content: { padding: '100px 40px', flex: 1 },
     title: { color: '#4B2C20', borderBottom: '2px solid #A67B5B', paddingBottom: '10px', marginBottom: '30px' },
     table: { width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', borderRadius: '8px', overflow: 'hidden' },

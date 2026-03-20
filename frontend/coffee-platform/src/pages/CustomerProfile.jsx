@@ -682,15 +682,24 @@ const filteredCafes = cafes.filter(cafe => {
 
 
 
-  const colors = { coffee: '#4c3c34', latte: '#cbbcb2', cream: '#fdfbf9', white: '#ffffff', accent: '#a27c5c' };
+  const colors = { 
+    sidebarBg: '#2b1d19', // Dark Roasted Coffee
+    sidebarText: '#fdfbf9', // Cream
+    sidebarActive: '#a27c5c', // Bronze Accent
+    coffee: '#4c3c34', 
+    latte: '#cbbcb2', 
+    cream: '#fdfbf9', 
+    white: '#ffffff', 
+    accent: '#a27c5c' 
+  };
 
   const styles = {
 
-    container: { display: 'flex', minHeight: '100vh', backgroundColor: '#f8f5f2' },
+    container: { display: 'flex', minHeight: '100vh', backgroundColor: '#f8f5f2', fontFamily: "'Poppins', sans-serif" },
 
-    sidebar: { backgroundColor: colors.latte, color: colors.coffee, display: 'flex', flexDirection: 'column' },
+    sidebar: { backgroundColor: colors.sidebarBg, color: colors.sidebarText, display: 'flex', flexDirection: 'column', boxShadow: '4px 0 15px rgba(0,0,0,0.15)' },
 
-    sidebarHeader: { padding: '40px 30px', fontSize: '24px', fontWeight: 'bold', borderBottom: '1px solid rgba(255,255,255,0.1)' },
+    sidebarHeader: { padding: '40px 30px', fontSize: '24px', fontWeight: 'bold', borderBottom: '1px solid rgba(255,255,255,0.1)', color: colors.sidebarText },
 
     navItem: (active) => ({
 
@@ -698,7 +707,9 @@ const filteredCafes = cafes.filter(cafe => {
 
       backgroundColor: active ? 'rgba(255,255,255,0.1)' : 'transparent',
 
-      transition: '0.3s', borderLeft: active ? `4px solid ${colors.coffee}` : '4px solid transparent'
+      transition: '0.3s', borderLeft: active ? `4px solid ${colors.sidebarActive}` : '4px solid transparent',
+
+      color: active ? colors.sidebarActive : colors.sidebarText
 
     }),
 

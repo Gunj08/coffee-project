@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  ChefHat, 
+  CheckCircle, 
+  Map, 
+  ClipboardList, 
+  BarChart3, 
+  User, 
+  LogOut,
+  Coffee
+} from 'lucide-react';
 import '../responsive.css';
 
 const ChefDashboard = () => {
@@ -19,6 +29,9 @@ const ChefDashboard = () => {
 
     const colors = {
         coffee: '#4b2c20',
+        sidebarBg: '#2b1d19', // Dark Roasted Coffee
+        sidebarText: '#fdfbf9', // Cream
+        sidebarActive: '#a27c5c', // Bronze Accent
         latte: '#cbbcb2',
         cream: '#fdfbf9',
         white: '#ffffff',
@@ -29,20 +42,22 @@ const ChefDashboard = () => {
     const styles = {
         container: { display: 'flex', minHeight: '100vh', backgroundColor: '#f8f5f2', fontFamily: "'Poppins', sans-serif" },
         sidebar: {
-            backgroundColor: colors.latte, color: colors.coffee,
-            boxShadow: '4px 0 15px rgba(0,0,0,0.08)'
+            backgroundColor: colors.sidebarBg, 
+            color: colors.sidebarText,
+            boxShadow: '4px 0 15px rgba(0,0,0,0.15)'
         },
         sidebarHeader: {
             padding: '40px 30px', fontSize: '22px', fontWeight: 'bold',
-            borderBottom: '1px solid rgba(76,60,52,0.15)', color: colors.coffee
+            borderBottom: '1px solid rgba(255,255,255,0.1)', color: colors.sidebarText
         },
         navItem: (active) => ({
             display: 'flex', alignItems: 'center', gap: '15px',
             padding: '15px 25px', cursor: 'pointer',
-            backgroundColor: active ? colors.highlight : 'transparent',
+            backgroundColor: active ? 'rgba(255,255,255,0.1)' : 'transparent',
             transition: '0.3s',
-            borderLeft: active ? `5px solid ${colors.coffee}` : '5px solid transparent',
-            color: colors.coffee, fontWeight: active ? '700' : '500',
+            borderLeft: active ? `5px solid ${colors.sidebarActive}` : '5px solid transparent',
+            color: active ? colors.sidebarActive : colors.sidebarText, 
+            fontWeight: active ? '700' : '500',
             fontSize: '15px'
         }),
         content: { padding: '40px 60px', overflowY: 'auto' },
@@ -309,36 +324,36 @@ const ChefDashboard = () => {
 
             <aside className={`dashboard-sidebar ${sidebarOpen ? 'open' : ''}`} style={styles.sidebar}>
                 <div style={{ ...styles.sidebarHeader, display: 'flex', alignItems: 'center' }}>
-                    <div style={{ padding: '8px', backgroundColor: 'rgba(75, 44, 32, 0.1)', borderRadius: '8px', marginRight: '12px' }}>
-                        <span style={{ fontSize: '24px' }}>☕</span>
+                    <div style={{ padding: '8px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', marginRight: '12px' }}>
+                        <Coffee size={24} color={colors.sidebarActive} />
                     </div>
                     Chef Central
                 </div>
                 <nav style={{ flex: 1, marginTop: '10px' }}>
                     <div style={styles.navItem(activeTab === 'live')} onClick={() => { setActiveTab('live'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>🍳</span> Active Queue
+                        <ChefHat size={20} /> Active Queue
                     </div>
                     <div style={styles.navItem(activeTab === 'ready')} onClick={() => { setActiveTab('ready'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>✅</span> Ready for Pickup
+                        <CheckCircle size={20} /> Ready for Pickup
                     </div>
                     <div style={styles.navItem(activeTab === 'map')} onClick={() => { setActiveTab('map'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>🏢</span> Floor Plan
+                        <Map size={20} /> Floor Plan
                     </div>
                     <div style={styles.navItem(activeTab === 'menu')} onClick={() => { setActiveTab('menu'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>📜</span> Menu Control
+                        <ClipboardList size={20} /> Menu Control
                     </div>
                     <div style={styles.navItem(activeTab === 'history')} onClick={() => { setActiveTab('history'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>📊</span> Analytics
+                        <BarChart3 size={20} /> Analytics
                     </div>
                     <div style={styles.navItem(activeTab === 'profile')} onClick={() => { setActiveTab('profile'); setSidebarOpen(false); }}>
-                        <span style={{ fontSize: '18px' }}>👤</span> Profile Settings
+                        <User size={20} /> Profile Settings
                     </div>
                 </nav>
                 <div style={{ ...styles.navItem(false), marginBottom: '20px' }} onClick={() => {
                     localStorage.removeItem('user');
                     navigate('/login');
                 }}>
-                    <span>🚪</span> Logout
+                    <LogOut size={20} /> Logout
                 </div>
             </aside>
 

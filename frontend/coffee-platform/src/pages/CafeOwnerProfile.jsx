@@ -474,6 +474,9 @@ const [staffForm, setStaffForm] = useState({
 
   // --- THEME COLORS ---
   const colors = {
+    sidebarBg: '#2b1d19', // Dark Roasted Coffee
+    sidebarText: '#fdfbf9', // Cream
+    sidebarActive: '#a27c5c', // Bronze Accent
     cream: '#f4eee8',
     latte: '#cbbcb2',
     coffee: '#4c3c34',
@@ -506,9 +509,9 @@ const [staffForm, setStaffForm] = useState({
     boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
     transition: '0.2s transform',
   }),
-    container: { display: 'flex', minHeight: '100vh', backgroundColor: colors.cream, color: colors.coffee, fontFamily: '"Playfair Display", serif' },
-    sidebar: { width: '280px', backgroundColor: colors.latte, height: '100vh', position: 'fixed', left: 0, top: 0, boxShadow: '4px 0 20px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', zIndex: 100, },
-    logoArea: { padding: '10px 30px 20px 30px', borderBottom: '1px solid rgba(0,0,0,0.05)', fontSize: '24px', fontWeight: 'bold' },
+    container: { display: 'flex', minHeight: '100vh', backgroundColor: colors.cream, color: colors.coffee, fontFamily: "'Poppins', sans-serif" },
+    sidebar: { width: '280px', backgroundColor: colors.sidebarBg, color: colors.sidebarText, height: '100vh', position: 'fixed', left: 0, top: 0, boxShadow: '4px 0 20px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', zIndex: 100, },
+    logoArea: { padding: '10px 30px 20px 30px', borderBottom: '1px solid rgba(255,255,255,0.1)', fontSize: '24px', fontWeight: 'bold' },
     nav: { marginTop: '20px', flex: 1 },
     main: { marginLeft: '280px', flex: 1, padding: '60px', overflowY: 'auto' },
     card: { backgroundColor: colors.glass, padding: '30px', borderRadius: '24px', border: `1px solid ${colors.white}`, boxShadow: '0 10px 30px rgba(0,0,0,0.03)' },
@@ -924,9 +927,10 @@ const handleRevokeStaff = async (staffId) => {
       onClick={() => { setActiveSection(id); setShowStaffForm(false); setShowTableForm(false); }}
       style={{
         padding: '20px 40px', cursor: 'pointer', transition: '0.3s',
-        backgroundColor: activeSection === id ? 'rgba(255,255,255,0.4)' : 'transparent',
-        borderLeft: `4px solid ${activeSection === id ? colors.coffee : 'transparent'}`,
-        display: 'flex', alignItems: 'center', gap: '15px'
+        backgroundColor: activeSection === id ? 'rgba(255,255,255,0.1)' : 'transparent',
+        borderLeft: `4px solid ${activeSection === id ? colors.sidebarActive : 'transparent'}`,
+        display: 'flex', alignItems: 'center', gap: '15px',
+        color: activeSection === id ? colors.sidebarActive : colors.sidebarText
       }}
     >
       <span style={{ fontSize: '20px' }}>{icon}</span>
@@ -964,10 +968,10 @@ const handleRevokeStaff = async (staffId) => {
     padding: '18px 30px',
     cursor: 'pointer',
     marginTop: 'auto', // This pushes the logout to the bottom
-    color: '#4c3c34',
-    opacity: 0.7,
+    color: colors.sidebarText,
+    opacity: 0.8,
     transition: '0.3s',
-    borderTop: '1px solid rgba(0,0,0,0.05)'
+    borderTop: '1px solid rgba(255,255,255,0.1)'
   }}
   onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
   onMouseLeave={(e) => e.currentTarget.style.opacity = 0.7}
@@ -989,7 +993,8 @@ const handleRevokeStaff = async (staffId) => {
       fontSize: '10px', 
       fontWeight: 'bold', 
       cursor: 'pointer', 
-      opacity: 0.5, 
+      opacity: 0.6, 
+      color: colors.sidebarActive,
       textAlign: 'left',
       display: 'flex',
       alignItems: 'center',

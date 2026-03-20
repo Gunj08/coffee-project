@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Coffee } from 'lucide-react';
 
 const Header = ({ onNavClick }) => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Header = ({ onNavClick }) => {
       boxSizing: 'border-box'
     },
     logoContainer: { display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '10px' },
-    logoText: { fontSize: '22px', fontWeight: '800', fontFamily: "'Playfair Display', serif", color: '#FFFFFF' },
+    logoText: { fontSize: '22px', fontWeight: '800', fontFamily: "'Poppins', sans-serif", color: '#FFFFFF' },
     navLinks: { display: 'flex', gap: '30px', alignItems: 'center' },
     navItem: {
       fontSize: '14px',
@@ -83,7 +84,7 @@ const Header = ({ onNavClick }) => {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer} onClick={() => navigate('/')}>
-        <span style={{fontSize: '24px'}}>☕</span>
+        <Coffee size={24} color="#D4AF37" />
         <span style={styles.logoText}>Bookafé</span>
       </div>
 

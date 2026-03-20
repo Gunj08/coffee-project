@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  BarChart3, 
+  CheckCircle, 
+  Users, 
+  Settings, 
+  LayoutDashboard,
+  Store,
+  FileText,
+  ShoppingBag,
+  LogOut,
+  Coffee
+} from 'lucide-react';
 
 const Admin = () => {
     const navigate = useNavigate();
@@ -14,7 +26,7 @@ const Admin = () => {
         },
         sidebar: {
             width: '260px',
-            backgroundColor: '#2C2420',
+            backgroundColor: '#2b1d19', // Dark Roasted Coffee
             color: '#FFFFFF',
             display: 'flex',
             flexDirection: 'column',
@@ -25,9 +37,12 @@ const Admin = () => {
             padding: '0 25px 40px 25px',
             fontSize: '28px',
             fontWeight: '800',
-            fontFamily: "'Playfair Display', serif",
-            color: '#D4A373',
+            fontFamily: "'Poppins', sans-serif",
+            color: '#a27c5c',
             cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
         },
         navGroup: {
             flex: 1,
@@ -41,8 +56,8 @@ const Admin = () => {
             transition: 'all 0.3s ease',
             fontSize: '14px',
             color: isActive ? '#FFFFFF' : '#A0A0A0',
-            backgroundColor: isActive ? '#4B2C20' : 'transparent',
-            borderLeft: isActive ? '5px solid #D4A373' : '5px solid transparent',
+            backgroundColor: isActive ? 'rgba(255,255,255,0.1)' : 'transparent',
+            borderLeft: isActive ? '5px solid #a27c5c' : '5px solid transparent',
         }),
         mainContent: {
             flex: 1,
@@ -150,7 +165,7 @@ const Admin = () => {
             {/* Sidebar */}
             <aside style={styles.sidebar}>
                 <div style={styles.logoSection} onClick={() => navigate('/')}>
-                    Bookafé
+                    <Coffee size={28} /> Bookafé
                 </div>
                 
                 <nav style={styles.navGroup}>
@@ -161,9 +176,13 @@ const Admin = () => {
                             onClick={() => handleNavClick(item)}
                         >
                             <span>
-                                {item === 'Dashboard' ? '📊' : 
-                                 item === 'Admin Approval' ? '✅' : 
-                                 item === 'Users' ? '👥' : '⚙️'}
+                                {item === 'Dashboard' ? <BarChart3 size={20} /> : 
+                                 item === 'Admin Approval' ? <CheckCircle size={20} /> : 
+                                 item === 'Users' ? <Users size={20} /> : 
+                                 item === 'Cafes' ? <Store size={20} /> :
+                                 item === 'Orders' ? <ShoppingBag size={20} /> :
+                                 item === 'Reports' ? <FileText size={20} /> :
+                                 <Settings size={20} />}
                             </span>
                             {item}
                         </div>
