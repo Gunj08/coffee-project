@@ -63,6 +63,12 @@ public class CafeController {
             cafe.setAccountHolderName(cafeDetails.getAccountHolderName());
             cafe.setAccountNumber(cafeDetails.getAccountNumber());
             cafe.setIfscCode(cafeDetails.getIfscCode());
+            cafe.setDistrict(cafeDetails.getDistrict());
+            cafe.setCountry(cafeDetails.getCountry());
+            cafe.setPanNumber(cafeDetails.getPanNumber());
+            cafe.setHasHomeDelivery(cafeDetails.isHasHomeDelivery());
+            cafe.setHasTakeaway(cafeDetails.isHasTakeaway());
+            cafe.setHasDineIn(cafeDetails.isHasDineIn());
             return ResponseEntity.ok(cafeRepository.save(cafe));
         }).orElse(ResponseEntity.notFound().build());
     }

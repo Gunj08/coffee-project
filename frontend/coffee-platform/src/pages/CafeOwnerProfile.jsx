@@ -211,7 +211,7 @@ const badgeStyle = {
 // Redundant method removed to avoid confusion. Use handleAddMenu instead.
 
 // - Staff state-
-const [staffList, setStaffList] = useState([]);
+// const [staffList, setStaffList] = useState([]); // Removed duplicate declaration
 const [showStaffForm, setShowStaffForm] = useState(false);
 const [selectedRole, setSelectedRole] = useState("");
 const [showStaffList, setShowStaffList] = useState(false);
@@ -266,11 +266,11 @@ const staffPerPage = 4;
   fetchStaff();
 }, [selectedCafe, activeSection]);
 
- useEffect(() => {
-    if (cafes && cafes.length > 0 && !selectedCafe) {
-        setSelectedCafe(cafes[0]);
+  useEffect(() => {
+    if (myCafes && myCafes.length > 0 && !selectedCafe) {
+        setSelectedCafe(myCafes[0]);
     }
-}, [cafes, selectedCafe]);
+}, [myCafes, selectedCafe]);
   useEffect(() => {
   if (activeSection === 'my-cafes') {
     fetch('http://localhost:8080/api/cafes/all')
@@ -1661,8 +1661,16 @@ const handleRevokeStaff = async (staffId) => {
     <h2 style={{ fontSize: '32px', marginBottom: '30px', color: '#4c3c34', fontFamily: "'Playfair Display', serif", textAlign: 'center' }}>
       Staff Management
     </h2>
-    
-    {showStaffForm ? (
+
+    {!selectedCafe ? (
+      <div style={{ textAlign: 'center', padding: '50px', backgroundColor: '#fff', borderRadius: '15px', color: '#8c7e74' }}>
+        <h3>No Cafe Selected</h3>
+        <p>Please select a cafe from "My Cafes" to manage its staff.</p>
+        <button onClick={() => setActiveSection('my-cafes')} style={{...styles.buttonPrimary, width: 'auto', marginTop: '15px'}}>Go to My Cafes</button>
+      </div>
+    ) : (
+      <>
+        {showStaffForm ? (
       /* VIEW 1: THE SIGNUP FORM */
       <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '15px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', animation: 'fadeIn 0.3s ease-in' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '25px', gap: '15px' }}>
@@ -1801,6 +1809,8 @@ const handleRevokeStaff = async (staffId) => {
           View Registered Staff List ({staffList.length})
         </button>
       </div>
+    )}
+    </>
     )}
   </div>
 )}

@@ -159,9 +159,13 @@ const ChefDashboard = () => {
                     const res = await fetch(`http://localhost:8080/api/dashboard/sync-profile?email=${encodeURIComponent(profileData.email)}`);
                     if (res.ok) {
                         const freshUser = await res.json();
-                        console.log("Chef Dashboard: Profile synced successfully:", freshUser);
-                        setProfileData(freshUser);
-                        localStorage.setItem('user', JSON.stringify(freshUser));
+                        if (JSON.stringify(freshUser) !== JSON.stringify(profileData)) {
+                          console.log("Chef Dashboard: Profile synced successfully:", freshUser);
+                          setProfileData(freshUser);
+                          localStorage.setItem('user', JSON.stringify(freshUser));
+                        } else {
+                          console.log("Chef Dashboard: Synced data is identical, skipping state update.");
+                        }
                     }
                 } catch (err) {
                     console.error("Chef Dashboard: Sync failed:", err);
@@ -414,11 +418,7 @@ const ChefDashboard = () => {
                         </div>
                     ) : activeTab === 'map' ? (
                         <div style={styles.grid}>
-                            {cafeTables.length === 0 ? (
-                                <div style={{ textAlign: 'center', gridColumn: '1/-1', padding: '50px', color: '#A67B5B', backgroundColor: 'white', borderRadius: '15px' }}>
-                                    No tables registered for this cafe.
-                                </div>
-                            ) : (
+                            {cafeTables && cafeTables.length > 0 ? (
                                 cafeTables.map(table => (
                                     <div key={table.id} style={{ textAlign: 'center' }}>
                                         <div style={styles.tableNode(table.status)}>
@@ -431,6 +431,10 @@ const ChefDashboard = () => {
                                         </div>
                                     </div>
                                 ))
+                            ) : (
+                                <div style={{ textAlign: 'center', gridColumn: '1/-1', padding: '50px', color: '#A67B5B', backgroundColor: 'white', borderRadius: '15px', width: '100%' }}>
+                                    No tables registered for this cafe.
+                                </div>
                             )}
                         </div>
                     ) : activeTab === 'profile' ? (

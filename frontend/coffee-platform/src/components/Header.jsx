@@ -9,12 +9,13 @@ const Header = ({ onNavClick }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      setUser(null);
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+    
+    // Only update state if the user data has actually changed to avoid cascading renders
+    if (JSON.stringify(user) !== JSON.stringify(parsedUser)) {
+      setUser(parsedUser);
     }
-  }, [location]);
+  }, [location, user]);
 
   const handleLogout = () => {
     localStorage.removeItem('user');

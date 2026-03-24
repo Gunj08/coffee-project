@@ -34,6 +34,18 @@ public class Cafe {
     private String accountNumber;
     private String ifscCode;
 
+    // Additional Address fields
+    private String district;
+    private String country;
+
+    // Business Compliance
+    private String panNumber;
+
+    // Service Features
+    private boolean hasHomeDelivery;
+    private boolean hasTakeaway;
+    private boolean hasDineIn;
+
     // Media
     @ElementCollection
     @CollectionTable(name = "cafe_images", joinColumns = @JoinColumn(name = "cafe_id"))
@@ -102,4 +114,22 @@ public class Cafe {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public String getDistrict() { return district; }
+    public void setDistrict(String district) { this.district = district; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getPanNumber() { return panNumber; }
+    public void setPanNumber(String panNumber) { this.panNumber = panNumber; }
+
+    public boolean isHasHomeDelivery() { return hasHomeDelivery; }
+    public void setHasHomeDelivery(boolean hasHomeDelivery) { this.hasHomeDelivery = hasHomeDelivery; }
+
+    public boolean isHasTakeaway() { return hasTakeaway; }
+    public void setHasTakeaway(boolean hasTakeaway) { this.hasTakeaway = hasTakeaway; }
+
+    public boolean isHasDineIn() { return hasDineIn; }
+    public void setHasDineIn(boolean hasDineIn) { this.hasDineIn = hasDineIn; }
 }

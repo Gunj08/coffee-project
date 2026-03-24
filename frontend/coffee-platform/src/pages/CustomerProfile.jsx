@@ -435,6 +435,16 @@ const filteredCafes = cafes.filter(cafe => {
 
 
 
+  const fetchCafes = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/cafes/all');
+      const data = await response.json();
+      setCafes(data);
+    } catch (error) {
+      console.error("Error fetching cafes:", error);
+    }
+  };
+
   useEffect(() => {
 
     const fetchTables = async () => {
@@ -527,23 +537,6 @@ const filteredCafes = cafes.filter(cafe => {
 
 
 
-  const fetchCafes = async () => {
-
-    try {
-
-      const response = await fetch('http://localhost:8080/api/cafes/all');
-
-      const data = await response.json();
-
-      setCafes(data);
-
-    } catch (error) {
-
-      console.error("Error fetching cafes:", error);
-
-    }
-
-  };
 
 
 

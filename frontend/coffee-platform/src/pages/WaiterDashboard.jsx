@@ -189,12 +189,16 @@ const WaiterDashboard = () => {
           );
           if (res.ok) {
             const freshUser = await res.json();
-            console.log(
-              "Waiter Dashboard: Profile synced successfully:",
-              freshUser,
-            );
-            setProfileData(freshUser);
-            localStorage.setItem("user", JSON.stringify(freshUser));
+            if (JSON.stringify(freshUser) !== JSON.stringify(profileData)) {
+              console.log(
+                "Waiter Dashboard: Profile synced successfully:",
+                freshUser,
+              );
+              setProfileData(freshUser);
+              localStorage.setItem("user", JSON.stringify(freshUser));
+            } else {
+              console.log("Waiter Dashboard: Synced data is identical, skipping state update.");
+            }
           } else {
             console.error(
               `Waiter Dashboard: Sync failed with status ${res.status}`,
@@ -536,31 +540,37 @@ const WaiterDashboard = () => {
               justifyItems: "center",
             }}
           >
-            {tables.map((table) => (
-              <div key={table.id} style={{ textAlign: "center" }}>
-                <div style={styles.tableNode(table.status)}>
-                  <span style={{ fontSize: "12px", fontWeight: "600" }}>
-                    TABLE
-                  </span>
-                  <span style={{ fontSize: "24px", fontWeight: "800" }}>
-                    {table.tableNumber}
-                  </span>
-                  <span style={{ fontSize: "10px" }}>
-                    {table.capacity} Seats
-                  </span>
+            {tables.length === 0 ? (
+                <div style={{ textAlign: 'center', gridColumn: '1/-1', padding: '50px', color: '#A67B5B', backgroundColor: 'white', borderRadius: '15px', width: '100%' }}>
+                  No tables registered for this cafe.
                 </div>
-                <div
-                  style={{
-                    marginTop: "10px",
-                    fontSize: "12px",
-                    fontWeight: "700",
-                    color: table.status === "Occupied" ? "#A67B5B" : "#999",
-                  }}
-                >
-                  {table.status.toUpperCase()}
-                </div>
-              </div>
-            ))}
+              ) : (
+                tables.map((table) => (
+                  <div key={table.id} style={{ textAlign: "center" }}>
+                    <div style={styles.tableNode(table.status)}>
+                      <span style={{ fontSize: "12px", fontWeight: "600" }}>
+                        TABLE
+                      </span>
+                      <span style={{ fontSize: "24px", fontWeight: "800" }}>
+                        {table.tableNumber}
+                      </span>
+                      <span style={{ fontSize: "10px" }}>
+                        {table.capacity} Seats
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "10px",
+                        fontSize: "12px",
+                        fontWeight: "700",
+                        color: table.status === "Occupied" ? "#A67B5B" : "#999",
+                      }}
+                    >
+                      {table.status.toUpperCase()}
+                    </div>
+                  </div>
+                ))
+              )}
           </div>
         ) : activeTab === "profile" ? (
           <div style={styles.card}>

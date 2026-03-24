@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const AdminDashboard = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState(null); // For Detail Modal
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPendingUsers();
