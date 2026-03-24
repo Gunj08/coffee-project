@@ -66,9 +66,9 @@ public class CafeController {
             cafe.setDistrict(cafeDetails.getDistrict());
             cafe.setCountry(cafeDetails.getCountry());
             cafe.setPanNumber(cafeDetails.getPanNumber());
-            cafe.setHasHomeDelivery(cafeDetails.isHasHomeDelivery());
-            cafe.setHasTakeaway(cafeDetails.isHasTakeaway());
-            cafe.setHasDineIn(cafeDetails.isHasDineIn());
+            cafe.setHasHomeDelivery(cafeDetails.getHasHomeDelivery());
+            cafe.setHasTakeaway(cafeDetails.getHasTakeaway());
+            cafe.setHasDineIn(cafeDetails.getHasDineIn());
             return ResponseEntity.ok(cafeRepository.save(cafe));
         }).orElse(ResponseEntity.notFound().build());
     }

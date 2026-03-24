@@ -12,39 +12,77 @@ public class Cafe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "cafe_name")
     private String cafeName;
+
+    @Column(name = "owner_name")
     private String ownerName;
+
+    @Column(name = "contact_number")
     private String contactNumber;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "opening_time")
     private String openingTime;
+
+    @Column(name = "closing_time")
     private String closingTime;
 
     // Address fields
+    @Column(name = "street")
     private String street;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "pincode")
     private String pincode;
 
     // Business info
+    @Column(name = "business_type")
     private String businessType;
+
+    @Column(name = "fssai_license_number")
     private String fssaiLicenseNumber;
+
+    @Column(name = "gst_number")
     private String gstNumber;
+
+    @Column(name = "upi_id")
     private String upiId;
+
+    @Column(name = "account_holder_name")
     private String accountHolderName;
+
+    @Column(name = "account_number")
     private String accountNumber;
+
+    @Column(name = "ifsc_code")
     private String ifscCode;
 
-    // Additional Address fields
-    private String district;
-    private String country;
+    @Column(name = "district")
+    private String district = "";
 
-    // Business Compliance
-    private String panNumber;
+    @Column(name = "country")
+    private String country = "";
+
+    @Column(name = "pan_number")
+    private String panNumber = "";
 
     // Service Features
-    private boolean hasHomeDelivery;
-    private boolean hasTakeaway;
-    private boolean hasDineIn;
+    @Column(name = "has_home_delivery")
+    private Boolean hasHomeDelivery = false;
+
+    @Column(name = "has_takeaway")
+    private Boolean hasTakeaway = false;
+
+    @Column(name = "has_dine_in")
+    private Boolean hasDineIn = false;
 
     // Media
     @ElementCollection
@@ -124,12 +162,12 @@ public class Cafe {
     public String getPanNumber() { return panNumber; }
     public void setPanNumber(String panNumber) { this.panNumber = panNumber; }
 
-    public boolean isHasHomeDelivery() { return hasHomeDelivery; }
-    public void setHasHomeDelivery(boolean hasHomeDelivery) { this.hasHomeDelivery = hasHomeDelivery; }
+    public Boolean getHasHomeDelivery() { return hasHomeDelivery; }
+    public void setHasHomeDelivery(Boolean hasHomeDelivery) { this.hasHomeDelivery = hasHomeDelivery; }
 
-    public boolean isHasTakeaway() { return hasTakeaway; }
-    public void setHasTakeaway(boolean hasTakeaway) { this.hasTakeaway = hasTakeaway; }
+    public Boolean getHasTakeaway() { return hasTakeaway; }
+    public void setHasTakeaway(Boolean hasTakeaway) { this.hasTakeaway = hasTakeaway; }
 
-    public boolean isHasDineIn() { return hasDineIn; }
-    public void setHasDineIn(boolean hasDineIn) { this.hasDineIn = hasDineIn; }
+    public Boolean getHasDineIn() { return hasDineIn; }
+    public void setHasDineIn(Boolean hasDineIn) { this.hasDineIn = hasDineIn; }
 }

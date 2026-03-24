@@ -44,7 +44,7 @@ public class User {
     private String totalYears;
     private String startDate;
     private String endDate;
-    private boolean currentlyWorking;
+    private Boolean currentlyWorking = false;
 
     @Column(columnDefinition = "TEXT")
     private String responsibilities;
@@ -129,8 +129,8 @@ public class User {
     public String getEndDate() { return endDate; }
     public void setEndDate(String endDate) { this.endDate = endDate; }
 
-    public boolean isCurrentlyWorking() { return currentlyWorking; }
-    public void setCurrentlyWorking(boolean currentlyWorking) { this.currentlyWorking = currentlyWorking; }
+    public Boolean getCurrentlyWorking() { return currentlyWorking; }
+    public void setCurrentlyWorking(Boolean currentlyWorking) { this.currentlyWorking = currentlyWorking; }
 
     public String getResponsibilities() { return responsibilities; }
     public void setResponsibilities(String responsibilities) { this.responsibilities = responsibilities; }

@@ -340,7 +340,7 @@ const ChefDashboard = () => {
                     <div style={styles.navItem(activeTab === 'ready')} onClick={() => { setActiveTab('ready'); setSidebarOpen(false); }}>
                         <CheckCircle size={20} /> Ready for Pickup
                     </div>
-                    <div style={styles.navItem(activeTab === 'map')} onClick={() => { setActiveTab('map'); setSidebarOpen(false); }}>
+                    <div style={styles.navItem(activeTab === 'map')} onClick={() => { setActiveTab('map'); setSidebarOpen(false); fetchTables(); }}>
                         <Map size={20} /> Floor Plan
                     </div>
                     <div style={styles.navItem(activeTab === 'menu')} onClick={() => { setActiveTab('menu'); setSidebarOpen(false); }}>

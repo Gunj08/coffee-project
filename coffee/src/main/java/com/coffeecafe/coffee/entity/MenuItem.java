@@ -15,7 +15,7 @@ public class MenuItem {
     @Column(columnDefinition = "TEXT")
     private String description;
     private String category;
-    private boolean available = true;
+    private Boolean available = true;
 
     @ManyToOne
     @JoinColumn(name = "cafe_id")
@@ -42,8 +42,8 @@ public class MenuItem {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-    public boolean isAvailable() { return available; }
-    public void setAvailable(boolean available) { this.available = available; }
+    public Boolean getAvailable() { return available; }
+    public void setAvailable(Boolean available) { this.available = available; }
 
     public Cafe getCafe() { return cafe; }
     public void setCafe(Cafe cafe) { this.cafe = cafe; }

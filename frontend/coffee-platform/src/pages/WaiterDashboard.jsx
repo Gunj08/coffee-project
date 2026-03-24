@@ -447,6 +447,7 @@ const WaiterDashboard = () => {
             onClick={() => {
               setActiveTab("map");
               setSidebarOpen(false);
+              fetchTables();
             }}
           >
             <Map size={20} /> Floor Plan
